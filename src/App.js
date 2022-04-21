@@ -7,7 +7,10 @@ function App() {
 
   return (
     <>
-     <Header title="We are in the header"></Header>
+     <Header></Header>
+     <div className='container'>
+       My App
+     </div>
     </>
   );
 }
