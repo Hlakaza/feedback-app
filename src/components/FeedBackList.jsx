@@ -1,13 +1,13 @@
 import React from 'react'
 import FeedbackItem from './FeedbackItem'
 import PropTypes from 'prop-types';
-function FeedBackList({feedback}) {
+function FeedBackList({feedback, handleFeeedback}) {
   if (!feedback || feedback.length === 0) {
      return <p>There is no feedback list.</p>
   }
   return (
     feedback.map((item) => (
-      <FeedbackItem item={item}></FeedbackItem>
+      <FeedbackItem key={item.id} handleFeeedback={handleFeeedback} item={item}></FeedbackItem>
     ))
   )
 

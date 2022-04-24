@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import Card from './shared/Card';
-
-function FeedbackItem({item}) {
+import { FaTimes } from 'react-icons/fa'
+function FeedbackItem({item, handleFeeedback}) {
 
   return (
     <Card>
       <div className="num-display">{item.rating}</div>
+      <button type='button' onClick={() => handleFeeedback(item.id)} className='close'>
+         <FaTimes color="purple"></FaTimes>
+      </button>
       <div className="text-dispaly">{item.text}</div>
     </Card>
   )
