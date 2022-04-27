@@ -8,6 +8,7 @@ function FeedbackForm() {
   };
 
   const onFormSendHandler = (event) => {
+    alert(event);
     console.log(event);
   };
 
@@ -21,7 +22,7 @@ function FeedbackForm() {
             type="text"
             placeholder="Write a review"
           />
-          <Button onClick={onFormSendHandler} type="submit">
+          <Button onClickHandler={onFormSendHandler} type="submit">
             Send
           </Button>
         </div>
