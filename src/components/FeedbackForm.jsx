@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./shared/Button";
 import Card from "./shared/Card";
 
 function FeedbackForm() {
@@ -20,9 +21,9 @@ function FeedbackForm() {
             type="text"
             placeholder="Write a review"
           />
-          <button onClick={onFormSendHandler} type="submit">
+          <Button onClick={onFormSendHandler} type="submit">
             Send
-          </button>
+          </Button>
         </div>
       </form>
     </Card>
