@@ -1,9 +1,11 @@
 import { useState } from "react";
+import RatingSelect from "./RatingSelect";
 import Button from "./shared/Button";
 import Card from "./shared/Card";
 
 function FeedbackForm() {
   const [text, setText] = useState('');
+  const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState(null);
 
@@ -11,6 +13,11 @@ function FeedbackForm() {
     setText(event.target.value);
     validateInput()
   };
+
+  const handleSelected = (value) => {
+    console.log(value)
+    setRating(value);
+  }
 
   const validateInput = () => {
     if (text === '') {
@@ -33,6 +40,7 @@ function FeedbackForm() {
     <Card reverse={false}>
       <form>
         <h2>How would you rate your service with us?</h2>
+        <RatingSelect selected={rating} select={handleSelected}></RatingSelect>
         <div className="input-group">
           <input value={text}
             onChange={onChangeTextHnadler}
