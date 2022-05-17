@@ -3,7 +3,8 @@ import RatingSelect from "./RatingSelect";
 import Button from "./shared/Button";
 import Card from "./shared/Card";
 
-function FeedbackForm() {
+function FeedbackForm({handleAdd}) {
+
   const [text, setText] = useState('');
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -23,22 +24,31 @@ function FeedbackForm() {
     if (text === '') {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (text && text.length <= 10) {
+    } else if (text && text.trim().length <= 10) {
       setBtnDisabled(true);
       setMessage('Text must be at least 11 charactors and above');
     } else {
       setBtnDisabled(false);
       setMessage(null);
+
     }
   }
 
-  const onFormSendHandler = (event) => {
-    console.log(event);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (text.trim().length > 10) {
+      const newFeedback = {
+        text,
+        rating
+      }
+      handleAdd(newFeedback);
+      setText('');
+    }
   };
 
   return (
     <Card reverse={false}>
-      <form>
+      <form onSubmit={submitHandler}>
         <h2>How would you rate your service with us?</h2>
         <RatingSelect selected={rating} select={handleSelected}></RatingSelect>
         <div className="input-group">
@@ -47,7 +57,7 @@ function FeedbackForm() {
             type="text"
             placeholder="Write a review"
           />
-          <Button isDisabled={btnDisabled} onClickHandler={onFormSendHandler} type="submit">
+          <Button isDisabled={btnDisabled} type="submit">
             Send
           </Button>
         </div>
